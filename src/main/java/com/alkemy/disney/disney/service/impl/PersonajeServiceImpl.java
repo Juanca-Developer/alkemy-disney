@@ -1,10 +1,10 @@
-package com.alkemy.disney.disney.service;
+package com.alkemy.disney.disney.service.impl;
 
 import com.alkemy.disney.disney.dto.PersonajeDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonajeService {
+public class PersonajeServiceImpl {
 
     public PersonajeDto save(PersonajeDto dto){
         //TODO: guardar personaje
