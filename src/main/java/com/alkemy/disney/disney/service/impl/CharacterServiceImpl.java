@@ -1,27 +1,53 @@
 package com.alkemy.disney.disney.service.impl;
 
 
-import com.alkemy.disney.disney.dto.PersonajeDto;
-import com.alkemy.disney.disney.entity.PersonajeEntity;
-import com.alkemy.disney.disney.mapper.PersonajeMapper;
-import com.alkemy.disney.disney.repository.PersonajeRepository;
+import com.alkemy.disney.disney.dto.CharacterDto;
+import com.alkemy.disney.disney.entity.CharacterEntity;
+import com.alkemy.disney.disney.mapper.CharacterMapper;
+import com.alkemy.disney.disney.repository.CharacterRepository;
+import com.alkemy.disney.disney.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class PersonajeServiceImpl {
+public class CharacterServiceImpl implements CharacterService {
 
     @Autowired
-    PersonajeMapper personajeMapper;
+    CharacterMapper characterMapper;
 
     @Autowired
-    PersonajeRepository personajeRepository;
-    public PersonajeDto save(PersonajeDto dto){
-        PersonajeEntity entity = personajeMapper.personjeDTO2Entity(dto);
-        PersonajeEntity entitySaved = personajeRepository.save(entity);
-        PersonajeDto result = personajeMapper.personajeEntity2DTO(entitySaved);
+    CharacterRepository characterRepository;
+
+    public CharacterDto save(CharacterDto dto){
+        CharacterEntity entity = characterMapper.characterDTO2Entity(dto);
+        CharacterEntity entitySaved = characterRepository.save(entity);
+        CharacterDto result = characterMapper.characterEntity2DTO(entitySaved);
        return result;
     }
+    public List<CharacterDto> getAllCharacters() {
+        List<CharacterEntity> entities =  characterRepository.findAll();
+        List<CharacterDto>result = characterMapper.characterEntityList2DTOList(entities);
+        return result;
+    }
+    public CharacterDto update (Long id,CharacterDto dto){
+        Optional<CharacterEntity> entitySaved = characterRepository.findById(id);
+        CharacterEntity entity = entitySaved.get();
+        entity.setNombre(dto.getNombre());
+        entity.setEdad(dto.getEdad());
+        entity.setImagen(dto.getImagen());
+        entity.setPeso(dto.getPeso());
+        entity.setHistoria(dto.getHistoria());
+        entity.setPeliculas(dto.getPelicula());
+        CharacterEntity entityUpdated = characterRepository.save(entity);
+        CharacterDto result = characterMapper.characterEntity2DTO(entityUpdated);
+        return result;
+    }
 
+    public void delete(Long id) {
+        this.characterRepository.deleteById(id);
 
+    }
 }

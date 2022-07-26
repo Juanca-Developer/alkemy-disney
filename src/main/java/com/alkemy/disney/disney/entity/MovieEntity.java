@@ -17,12 +17,12 @@ import java.util.Set;
 @Table(name = "pelicula")
 @Getter
 @Setter
-public class PeliculaEntity {
+public class MovieEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String imagen;
+    private String image;
     private String titulo;
 
 
@@ -33,10 +33,10 @@ public class PeliculaEntity {
 
     @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "genero_id", insertable = false, updatable = false )
-    private GenderEntity genero;
+    private GenderEntity gender;
 
     @Column(name = "genero_id", nullable = false)
-    private Long generoId;
+    private Long genderId;
 
     @ManyToMany(
             cascade = {
@@ -47,7 +47,7 @@ public class PeliculaEntity {
            name = "pelicula_personaje",
            joinColumns = @JoinColumn(name = "pelicula_id"),
            inverseJoinColumns = @JoinColumn(name="personaje_id"))
-    private Set <PersonajeEntity> personajes = new HashSet<>();
+    private Set <CharacterEntity> personajes = new HashSet<>();
 
 
 }

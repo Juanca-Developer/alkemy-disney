@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Table(name = "genero")
 @Getter
 @Setter
-public class GeneroEntity {
+public class GenderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -1,35 +1,35 @@
 package com.alkemy.disney.disney.service.impl;
 
-import com.alkemy.disney.disney.dto.GeneroDto;
-import com.alkemy.disney.disney.entity.GeneroEntity;
+import com.alkemy.disney.disney.dto.GenderDto;
+import com.alkemy.disney.disney.entity.GenderEntity;
 import com.alkemy.disney.disney.mapper.GenderMapper;
-import com.alkemy.disney.disney.repository.GeneroRepository;
-import com.alkemy.disney.disney.service.GeneroService;
+import com.alkemy.disney.disney.repository.GenderRepository;
+import com.alkemy.disney.disney.service.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class GeneroServiceImpl implements GeneroService {
+public class GenderServiceImpl implements GenderService {
 
     @Autowired
     private GenderMapper genderMapper;
 
     @Autowired
-    private GeneroRepository generoRepository;
+    private GenderRepository genderRepository;
 
-    public GeneroDto save(GeneroDto dto){
-        GeneroEntity entity = genderMapper.generoDTO2Entity(dto);
-        GeneroEntity entitySaved = generoRepository.save(entity);
-        GeneroDto result = genderMapper.generoEntity2DTO(entitySaved);
+    public GenderDto save(GenderDto dto){
+        GenderEntity entity = genderMapper.genderDTO2Entity(dto);
+        GenderEntity entitySaved = genderRepository.save(entity);
+        GenderDto result = genderMapper.genderEntity2DTO(entitySaved);
         return result;
     }
 
 
-    public List<GeneroDto> getAllGeneros() {
-        List<GeneroEntity> entities = generoRepository.findAll();
-        List<GeneroDto>result = genderMapper.generoEntityList2DTOList(entities);
+    public List<GenderDto> getAllGeneros() {
+        List<GenderEntity> entities = genderRepository.findAll();
+        List<GenderDto>result = genderMapper.genderEntityList2DTOList(entities);
         return result;
     }
 }
