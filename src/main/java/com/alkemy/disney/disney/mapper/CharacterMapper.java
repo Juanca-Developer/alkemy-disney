@@ -6,6 +6,7 @@ import com.alkemy.disney.disney.entity.CharacterEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -38,6 +39,18 @@ public class CharacterMapper {
         for(CharacterEntity entity: entities){
             dtos.add(this.characterEntity2DTO(entity));
         }
+        return dtos;
+    }
+   
+    public List<CharacterDto> characterEntitySet2DTOList(Collection<CharacterEntity> entities, boolean loadTitles)
+    {
+        List<CharacterDto> dtos = new ArrayList<>();
+
+        for(CharacterEntity entity : entities)
+        {
+            dtos.add(this.characterEntity2DTO(entity));
+        }
+
         return dtos;
     }
 }

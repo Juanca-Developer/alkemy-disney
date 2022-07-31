@@ -35,9 +35,9 @@ public class CharacterServiceImpl implements CharacterService {
     public CharacterDto update (Long id,CharacterDto dto){
         Optional<CharacterEntity> entitySaved = characterRepository.findById(id);
         CharacterEntity entity = entitySaved.get();
+        entity.setImagen(dto.getImagen());
         entity.setNombre(dto.getNombre());
         entity.setEdad(dto.getEdad());
-        entity.setImagen(dto.getImagen());
         entity.setPeso(dto.getPeso());
         entity.setHistoria(dto.getHistoria());
         entity.setPeliculas(dto.getPelicula());
